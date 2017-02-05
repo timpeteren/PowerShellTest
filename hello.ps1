@@ -16,7 +16,7 @@ function Write-Message
     }
     Process
     {
-     Write-Host $Message
+     Write-Host "Message:" + $Message
     }
     End
     {
