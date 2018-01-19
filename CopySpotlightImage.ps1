@@ -33,6 +33,8 @@ foreach($sFolder in $folder)
 
 $assetPath = $env:USERPROFILE + "\" + 'AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets\'
 $tempPath  = $env:USERPROFILE + "\" + 'Desktop\Temp\'
+$spotPath = $env:USERPROFILE + "\" + 'Desktop\Spotlight\'
+$spotVertPath = $env:USERPROFILE + "\" + 'Desktop\Spotlight vertical\'
 $assetImgs = @(Get-ChildItem -Path $assetPath)
 
 for ($i = 0; $i -lt $assetImgs.Count; $i++) 
@@ -45,5 +47,5 @@ for ($i = 0; $i -lt $assetImgs.Count; $i++)
 
 $landPictures = Get-FileMetaData -folder $tempPath | Where-Object {$_.Bredde -like "*1920*"}
 $portPictures = Get-FileMetaData -folder $tempPath | Where-Object {$_.Bredde -like "*1080*"}
-foreach ($pic in $landPictures) { Copy-Item -Path ($pic.Filnavn + ".jpg") -Destination ($tempPath + "..\Spotlight") -Force }
-foreach ($pic in $portPictures) { Copy-Item -Path ($pic.Filnavn + ".jpg") -Destination ($tempPath + "..\Spotlight vertical") -Force }
+foreach ($pic in $landPictures) { Copy-Item -Path ($tempPath + $pic.Filnavn + ".jpg") -Destination ($spotPath + $pic.Filnavn + ".jpg") -Force }
+foreach ($pic in $portPictures) { Copy-Item -Path ($tempPath + $pic.Filnavn + ".jpg") -Destination ($spotVertPath + $pic.Filnavn + ".jpg") -Force }
