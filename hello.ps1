@@ -22,3 +22,8 @@ function Write-Message
     {
     }
 }
+write-host "PSSCriptroot: $PSScriptRoot"
+Write-Host "Myinvocation.mycommand.path: $($MyInvocation.MyCommand.Path)"
+Write-Host "PSCommandpath: $PsCommandPath"
+
+

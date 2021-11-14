@@ -32,14 +32,18 @@ foreach($sFolder in $folder)
 ## Errorcheck -> user locale (!) ###
 
 $assetPath = $env:USERPROFILE + "\" + 'AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets\'
-$tempPath  = $env:USERPROFILE + "\" + 'Desktop\Temp\'
-$spotPath = $env:USERPROFILE + "\" + 'Desktop\Spotlight\'
-$spotVertPath = $env:USERPROFILE + "\" + 'Desktop\Spotlight vertical\'
+$tempPath  = $env:OneDrive + "\" + 'Skrivebord\Temp\'
+$spotPath = $env:OneDrive + "\" + 'Skrivebord\Spotlight\'
+$spotVertPath = $env:OneDrive + "\" + 'Skrivebord\Spotlight vertical\'
+
+# $tempPath  = $env:USERPROFILE + "\" + 'Desktop\Temp\'
+# $spotPath = $env:USERPROFILE + "\" + 'Desktop\Spotlight\'
+# $spotVertPath = $env:USERPROFILE + "\" + 'Desktop\Spotlight vertical\'
 $assetImgs = @(Get-ChildItem -Path $assetPath)
 
 for ($i = 0; $i -lt $assetImgs.Count; $i++) 
     {
-    if ($assetImgs[$i].CreationTime -gt (Get-Date).AddDays(-1))
+    if ($assetImgs[$i].CreationTime -gt (Get-Date).AddDays(-21))
         {
         Copy-item $assetImgs[$i].FullName -Destination ($tempPath +  $assetImgs[$i] + ".jpg")
         }

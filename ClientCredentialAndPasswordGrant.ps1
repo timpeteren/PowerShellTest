@@ -26,13 +26,13 @@ Write-Output $token
 #####################################################
 
 # Your Client ID and Client Secret obainted when registering your WebApp
-$clientId = '' # 37e91fb7-2bf2-4087-8c5c-02b23f670d1a # GraphAPI-CRU-App
+$clientId = ''
 $clientSecret = '' 
-$tenantName = '.onmicrosoft.com' # laerdalmedicalb2ctest
+$tenantName = '.onmicrosoft.com'
 $resource = 'https://graph.windows.net/'
 $grantType = "password"
-$username = "admin@{0}" -f $tenantName
-$password = "xxxxxxxxx"
+$username = "globaladmin@{0}" -f $tenantName
+$password = ""
 $uri = "https://login.microsoftonline.com/{0}/oauth2/token" -f $tenantName
 
 $body = @{
@@ -52,9 +52,9 @@ Write-Output $token
 #####################################################
 
 # Your Client ID and Client Secret obainted when registering your WebApp
-$clientId = '' # 37e91fb7-2bf2-4087-8c5c-02b23f670d1a # GraphAPI-CRU-App
+$clientId = ''
 $clientSecret = ''
-$tenantName = '.onmicrosoft.com' # laerdalmedicalb2ctest
+$tenantName = '.onmicrosoft.com'
 $resource = 'https://graph.windows.net/'
 $grantType = "client_credentials"
 $uri = "https://login.microsoftonline.com/{0}/oauth2/token" -f $tenantName
@@ -74,7 +74,7 @@ Write-Output $token
 
 # List users in tenant example using -Method GET
 $authHeader = @{Authorization = "Bearer {0}" -f $token.access_token}
-$tenantName = '.onmicrosoft.com' # laerdalmedicalb2ctest
+$tenantName = '.onmicrosoft.com'
 $graphUri = "https://graph.windows.net/{0}/users/?api-version=1.6" -f $tenantName
 
 Invoke-RestMethod -Method Get -Uri $graphUri -Headers $authHeader -ContentType "application/json"
@@ -83,7 +83,7 @@ Invoke-RestMethod -Method Get -Uri $graphUri -Headers $authHeader -ContentType "
 # Application schema extension example using -Method POST
 $authHeader = @{Authorization = "Bearer {0}" -f $token.access_token}
 $tenantName = '.onmicrosoft.com'
-$applicationObjectId = "" # b5013aaf-16bf-4ab2-972b-e01be641dfc0 # GraphAPI-Extensions-App
+$applicationObjectId = ""
 $graphUri = "https://graph.windows.net/{0}/applications/{1}/extensionProperties?api-version=1.6" -f $tenantName, $applicationObjectId
 $body = @{
     name = 'newCustomAttribute'
@@ -97,7 +97,7 @@ Invoke-RestMethod -Method Post -Uri $graphUri -Body ($body | ConvertTo-Json) -He
 # Modify user attribute example using -Method PATCH
 $authHeader = @{Authorization = "Bearer {0}" -f $token.access_token}
 $tenantName = '.onmicrosoft.com'
-$userObjectId = "" # "f65af661-3c33-474f-a3df-eddeafeb7a3e" # tpe@gmail.com
+$userObjectId = ""
 $graphUri = "https://graph.windows.net/{0}/users/{1}/?api-version=1.6" -f $tenantName, $userObjectId
 
 $body = @{
