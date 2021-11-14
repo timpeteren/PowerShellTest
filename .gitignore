@@ -2,6 +2,9 @@
 Thumbs.db
 ehthumbs.db
 
+# Local history VS Code extension
+.history
+
 # Folder config file
 Desktop.ini
 
